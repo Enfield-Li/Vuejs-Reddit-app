@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MainContent from "../components/MainContent.vue";
+</script>
 
 <template>
   <main>
-    <h1>Home page</h1>
+    <MainContent />
   </main>
 </template>
