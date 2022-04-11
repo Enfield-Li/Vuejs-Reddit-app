@@ -10,15 +10,20 @@
 </template>
 
 <script setup lang="ts">
+import router from "@/router";
+import { useUserStore } from "@/stores/user/uesrStore";
 import { reactive } from "vue-demi";
+const userStore = useUserStore();
 
 const formData = reactive({
   usernameOrEmail: "",
   password: "",
 });
+const { usernameOrEmail, password } = formData;
 
-function submitForm() {
-  console.log(formData);
+async function submitForm() {
+  const res = await userStore.loginUser({ usernameOrEmail, password });
+  if (res) router.push({ name: "home" });
 }
 </script>
 

@@ -47,6 +47,7 @@ export const useUserStore = defineStore("user", {
 
       if (res.data.user) {
         this.user = res.data.user;
+        return true;
       } else if (res.data.errors) {
         return res.data.errors;
       }
