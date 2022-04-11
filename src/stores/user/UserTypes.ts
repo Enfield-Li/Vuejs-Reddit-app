@@ -1,22 +1,3 @@
-import { defineStore } from "pinia";
-
-const useUserStore = defineStore("user", {
-  state: () =>
-    ({
-      user: null,
-      userProfile: null,
-    } as UserState),
-
-  getters: {
-    // doubleCount: (state) => state.counter * 2,
-  },
-  actions: {
-    // increment() {
-    //   this.counter++;
-    // },
-  },
-});
-
 export type UserState = {
   user: User | null;
   userProfile: UserProfileRO | null;

@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
 import { RouterView } from "vue-router";
 import Navbar from "./components/Navbar.vue";
+import { useUserStore } from "./stores/user/uesrStore";
+
+const userStore = useUserStore();
+onMounted(() => {
+  userStore.me();
+});
 </script>
 
 <template>
