@@ -7,6 +7,10 @@
       <PostCard :post-and-interactions="postAndInteraction" />
     </ul>
   </div>
+  <div v-else>
+    <ContentPlaceholder />
+    <ContentPlaceholder />
+  </div>
 
   <button v-if="paginatedPosts.hasMore">More posts</button>
 </template>
@@ -16,6 +20,7 @@ import { usePostStore } from "../stores/post/postStore";
 import { onMounted } from "@vue/runtime-core";
 import { toRefs } from "vue";
 import PostCard from "./post/postCard.vue";
+import ContentPlaceholder from "./placehoders/ContentPlaceholder.vue";
 
 const postStore = usePostStore();
 

@@ -172,7 +172,10 @@ export const usePostStore = defineStore("post", {
       //   });
     },
 
-    clearPostsCache() {},
+    clearPostsCache() {
+      this.paginatedPosts = { hasMore: false, postAndInteractions: [] };
+      this.currentPost = null;
+    },
 
     async fetchSinglePost(id: string | string[]) {
       const res = await axios.get<PostAndInteractions>(

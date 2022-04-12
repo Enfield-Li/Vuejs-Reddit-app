@@ -2,14 +2,14 @@
   <div class="me-3 mt-2">
     <button
       class="bi bi-caret-up btn"
-      :class="{ 'bg-info': postAndInteractions.interactions?.voteStatus }"
+      :class="{ 'bg-info': postAndInteractions.interactions.voteStatus }"
       @click="vote(true)"
     />
     <div class="text-center">{{ postAndInteractions.post.votePoints }}</div>
     <button
       class="bi bi-caret-down btn"
       :class="{
-        'bg-info': postAndInteractions.interactions?.voteStatus === false,
+        'bg-info': postAndInteractions.interactions.voteStatus === false,
       }"
       @click="vote(false)"
     />

@@ -34,6 +34,10 @@
       </div>
     </div>
   </div>
+
+  <div v-else>
+    <ContentPlaceholder />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -42,6 +46,7 @@ import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import PostCreatorInfo from "../components/post/sections/PostCreatorInfo.vue";
 import VoteSection from "../components/post/sections/voteSection.vue";
+import ContentPlaceholder from "../components/placehoders/ContentPlaceholder.vue";
 
 const route = useRoute();
 const postStore = usePostStore();

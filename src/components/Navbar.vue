@@ -6,7 +6,7 @@
       aria-current="page"
     >
       <!-- Home -->
-      <router-link :to="{ name: 'home' }">
+      <router-link :to="{ name: 'home' }" @click="clearCache">
         <i className="bi bi-reddit text-danger fs-1"></i>
         <span className="text-danger"> Reddit</span>
       </router-link>
@@ -27,7 +27,15 @@
 </template>
 
 <script setup lang="ts">
+import { usePostStore } from "@/stores/post/postStore";
 import UserInfo from "./UserInfo.vue";
+
+const postStore = usePostStore();
+
+function clearCache() {
+  postStore.clearPostsCache();
+  postStore.fetchPaginatedPosts();
+}
 </script>
 
 <style scoped></style>
