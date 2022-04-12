@@ -28,13 +28,17 @@
 
 <script setup lang="ts">
 import { usePostStore } from "@/stores/post/postStore";
+import { useRoute } from "vue-router";
 import UserInfo from "./UserInfo.vue";
 
 const postStore = usePostStore();
 
+const route = useRoute();
+
 function clearCache() {
   postStore.clearPostsCache();
-  postStore.fetchPaginatedPosts();
+
+  if (route.name === "home") postStore.fetchPaginatedPosts();
 }
 </script>
 

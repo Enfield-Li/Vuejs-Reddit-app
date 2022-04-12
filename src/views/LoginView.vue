@@ -29,9 +29,8 @@ async function submitForm() {
   const { usernameOrEmail, password } = formData;
   const res = await userStore.loginUser({ usernameOrEmail, password });
   if (res) {
-    router.push({ name: "home" });
     postStore.clearPostsCache();
-    postStore.fetchPaginatedPosts();
+    setTimeout(() => router.push({ name: "home" }), 1);
   }
 }
 </script>
