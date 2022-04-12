@@ -14,8 +14,10 @@ import router from "@/router";
 import { useUserStore } from "@/stores/user/uesrStore";
 import { reactive } from "vue-demi";
 import { toRefs } from "vue";
+import { usePostStore } from "@/stores/post/postStore";
 
 const userStore = useUserStore();
+const postStore = usePostStore();
 
 const formData = reactive({
   usernameOrEmail: "",
@@ -26,7 +28,11 @@ const { usernameOrEmail, password } = toRefs(formData);
 async function submitForm() {
   const { usernameOrEmail, password } = formData;
   const res = await userStore.loginUser({ usernameOrEmail, password });
-  if (res) router.push({ name: "home" });
+  if (res) {
+    router.push({ name: "home" });
+    postStore.clearPostsCache();
+    postStore.fetchPaginatedPosts();
+  }
 }
 </script>
 

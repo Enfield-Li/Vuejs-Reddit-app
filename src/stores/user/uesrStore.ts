@@ -117,11 +117,15 @@ export const useUserStore = defineStore("user", {
     },
 
     async logout() {
-      await axios.get("http://localhost:3119/user/logout", {
-        withCredentials: true,
-      });
-      this.user = null;
-      this.userProfile = null;
+      try {
+        this.user = null;
+        this.userProfile = null;
+        await axios.get("http://localhost:3119/user/logout", {
+          withCredentials: true,
+        });
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 });

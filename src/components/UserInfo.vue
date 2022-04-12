@@ -22,11 +22,7 @@
       </div>
 
       <!-- DropDowns -->
-      <ul
-        className="dropdown-menu"
-        aria-labelledby="dropDowns"
-        style="width: 540"
-      >
+      <ul className="dropdown-menu" aria-labelledby="dropDowns">
         <li>
           <div className="ms-3">MY STUFF</div>
 
@@ -70,14 +66,18 @@
 </template>
 
 <script setup lang="ts">
+import { usePostStore } from "@/stores/post/postStore";
 import { useUserStore } from "@/stores/user/uesrStore";
 import { toRefs } from "vue";
 
 const userStore = useUserStore();
+const postStore = usePostStore();
 
 const { user } = toRefs(userStore);
 function logoutAndClearCache() {
-  console.log("logout");
+  userStore.logout();
+  postStore.clearPostsCache();
+  setTimeout(() => postStore.fetchPaginatedPosts(), 1);
 }
 </script>
 
