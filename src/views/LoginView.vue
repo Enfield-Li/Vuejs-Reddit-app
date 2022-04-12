@@ -19,9 +19,9 @@ const formData = reactive({
   usernameOrEmail: "",
   password: "",
 });
-const { usernameOrEmail, password } = formData;
 
 async function submitForm() {
+  const { usernameOrEmail, password } = formData;
   const res = await userStore.loginUser({ usernameOrEmail, password });
   if (res) router.push({ name: "home" });
 }

@@ -6,18 +6,18 @@
       aria-current="page"
     >
       <!-- Home -->
-      <RouterLink :to="{ name: 'home' }">
+      <router-link :to="{ name: 'home' }">
         <i className="bi bi-reddit text-danger fs-1"></i>
         <span className="text-danger"> Reddit</span>
-      </RouterLink>
+      </router-link>
     </div>
 
     <div className="d-flex align-items-center">
       <!-- CreatePost -->
       <div>
-        <RouterLink :to="{ name: 'createPost' }">
+        <router-link :to="{ name: 'createPost' }">
           <i className="bi bi-plus-square fs-3 mx-3"></i>
-        </RouterLink>
+        </router-link>
       </div>
 
       <!-- UserInfo -->
@@ -27,7 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
 import UserInfo from "./UserInfo.vue";
 </script>
 
