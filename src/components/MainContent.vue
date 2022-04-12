@@ -1,9 +1,10 @@
 <template>
   <div v-if="paginatedPosts.postAndInteractions.length">
-    <ul v-for="post in paginatedPosts.postAndInteractions" :key="post.post.id">
-      {{
-        post.post.title
-      }}
+    <ul
+      v-for="postAndInteraction in paginatedPosts.postAndInteractions"
+      :key="postAndInteraction.post.id"
+    >
+      <PostCard :post-and-interactions="postAndInteraction" />
     </ul>
   </div>
 
@@ -14,6 +15,7 @@
 import { usePostStore } from "../stores/post/postStore";
 import { onMounted } from "@vue/runtime-core";
 import { toRefs } from "vue";
+import PostCard from "./post/postCard.vue";
 
 const postStore = usePostStore();
 
