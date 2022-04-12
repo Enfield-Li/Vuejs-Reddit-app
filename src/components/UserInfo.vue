@@ -1,20 +1,20 @@
 <template>
-  <div v-if="user" className="d-flex justify-content-center align-items-center">
+  <div v-if="user" class="d-flex justify-content-center align-items-center">
     <!-- dropDown userInfo -->
-    <div className="dropdown">
+    <div class="dropdown">
       <div
-        className="dropdown-toggle border px-3 py-1 my-2 d-flex justify-content-center align-items-center"
+        class="dropdown-toggle border px-3 py-1 my-2 d-flex justify-content-center align-items-center"
         role="button"
         id="dropDowns"
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <i className="bi bi-person-circle fs-2"></i>
+        <i class="bi bi-person-circle fs-2"></i>
         <div
-          className="ms-3 me-2 d-flex flex-column align-items-center justify-content-center"
+          class="ms-3 me-2 d-flex flex-column align-items-center justify-content-center"
         >
           <div>
-            <i className="bi bi-bookmark-star me-1"></i>
+            <i class="bi bi-bookmark-star me-1"></i>
             {{ user.username }}
           </div>
           <div>{{ user.email }}</div>
@@ -22,9 +22,9 @@
       </div>
 
       <!-- DropDowns -->
-      <ul className="dropdown-menu" aria-labelledby="dropDowns">
+      <ul class="dropdown-menu" aria-labelledby="dropDowns">
         <li>
-          <div className="ms-3">MY STUFF</div>
+          <div class="ms-3">MY STUFF</div>
 
           <!-- Profile -->
           <!-- <Link
@@ -32,18 +32,14 @@
                   style={{ color: "black", textDecoration: "none" }}
                   role="button"
                 > -->
-          <div className="dropdown-item">
-            <i className="bi bi-person-circle fs-5 me-2"></i> Profile
+          <div class="dropdown-item">
+            <i class="bi bi-person-circle fs-5 me-2"></i> Profile
           </div>
           <!-- </Link> -->
 
           <!-- LogOut -->
-          <div
-            className="dropdown-item"
-            role="button"
-            @click="logoutAndClearCache"
-          >
-            <i className="bi bi-box-arrow-right fs-5 me-2"></i> Logout
+          <div class="dropdown-item" role="button" @click="logoutAndClearCache">
+            <i class="bi bi-box-arrow-right fs-5 me-2"></i> Logout
           </div>
         </li>
       </ul>

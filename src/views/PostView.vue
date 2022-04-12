@@ -1,16 +1,16 @@
 <template>
   <div v-if="postStore.currentPost">
     <div>
-      <div className="card my-2 container">
-        <div className="card-body">
-          <div className="d-flex justify-content-between">
-            <div className="d-flex w-100">
+      <div class="card my-2 container">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex w-100">
               <VoteSection :postAndInteractions="postStore.currentPost" />
 
-              <div className="w-100">
+              <div class="w-100">
                 <PostCreatorInfo :postAndInteractions="postStore.currentPost" />
-                <h3 className="my-2">{{ postStore.currentPost.post.title }}</h3>
-                <p className="card-text mb-3 me-2 fs-5">
+                <h3 class="my-2">{{ postStore.currentPost.post.title }}</h3>
+                <p class="card-text mb-3 me-2 fs-5">
                   {{ postStore.currentPost.post.content }}
                 </p>
                 <!-- <InteractionDisplay postAndInteractions={currentPost} /> -->

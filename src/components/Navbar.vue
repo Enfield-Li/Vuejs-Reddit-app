@@ -1,22 +1,18 @@
 <template>
   <nav class="nav justify-content-between container align-items-center">
-    <div
-      role="button"
-      className="nav-link active text-dark h2"
-      aria-current="page"
-    >
+    <div role="button" class="nav-link active text-dark h2" aria-current="page">
       <!-- Home -->
       <router-link :to="{ name: 'home' }" @click="clearCache">
-        <i className="bi bi-reddit text-danger fs-1"></i>
-        <span className="text-danger"> Reddit</span>
+        <i class="bi bi-reddit text-danger fs-1"></i>
+        <span class="text-danger"> Reddit</span>
       </router-link>
     </div>
 
-    <div className="d-flex align-items-center">
+    <div class="d-flex align-items-center">
       <!-- CreatePost -->
       <div>
         <router-link :to="{ name: 'createPost' }">
-          <i className="bi bi-plus-square fs-3 mx-3"></i>
+          <i class="bi bi-plus-square fs-3 mx-3"></i>
         </router-link>
       </div>
 

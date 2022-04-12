@@ -1,11 +1,11 @@
 <template>
-  <div v-if="paginatedPosts.postAndInteractions.length">
-    <ul
+  <div v-if="paginatedPosts.postAndInteractions.length" class="container">
+    <div
       v-for="postAndInteraction in paginatedPosts.postAndInteractions"
       :key="postAndInteraction.post.id"
     >
       <PostCard :post-and-interactions="postAndInteraction" />
-    </ul>
+    </div>
   </div>
   <div v-else>
     <ContentPlaceholder />

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card d-flex flex-row justify-content-center my-2"
+    class="card d-flex flex-row justify-content-center my-2 container"
     aria-hidden="true"
   >
     <div class="mt-2 ms-3">
