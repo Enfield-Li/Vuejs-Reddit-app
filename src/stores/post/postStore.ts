@@ -24,7 +24,15 @@ export const usePostStore = defineStore("post", {
       postsInSearch: [],
     } as PostState),
 
-  getters: {},
+  getters: {
+    getLastDate(): Date | undefined {
+      if (this.paginatedPosts.postAndInteractions.length) {
+        const lastIndex = this.paginatedPosts.postAndInteractions.length - 1;
+        return this.paginatedPosts.postAndInteractions[lastIndex].post
+          .createdAt;
+      }
+    },
+  },
 
   actions: {
     async fetchPaginatedPosts(
@@ -65,7 +73,10 @@ export const usePostStore = defineStore("post", {
       // initiate interactions
       interactionNullCheckAndPopulateData(res.data.postAndInteractions);
 
-      this.paginatedPosts = res.data;
+      this.paginatedPosts.hasMore = res.data.hasMore;
+      this.paginatedPosts.postAndInteractions.push(
+        ...res.data.postAndInteractions
+      );
     },
 
     async searchPosts(keyword: string, take: number = 5) {

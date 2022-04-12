@@ -12,7 +12,9 @@
     <ContentPlaceholder />
   </div>
 
-  <button v-if="paginatedPosts.hasMore">More posts</button>
+  <button v-if="paginatedPosts.hasMore" @click="fetchMorePosts">
+    More posts
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +27,12 @@ import ContentPlaceholder from "./placehoders/ContentPlaceholder.vue";
 const postStore = usePostStore();
 
 const { paginatedPosts } = toRefs(postStore);
+
+function fetchMorePosts() {
+  const cursor = postStore.getLastDate;
+  if (cursor)
+    postStore.fetchPaginatedPosts("best", new Date(cursor).toISOString());
+}
 
 onMounted(() => {
   postStore.fetchPaginatedPosts();
