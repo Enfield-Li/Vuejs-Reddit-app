@@ -2,6 +2,7 @@ import {
   interactionNullCheckAndPopulateData,
   populateWithMockData,
 } from "@/utils/populateWithMockData";
+import { voteManipulation } from "@/utils/voteManipulation";
 import axios, { type AxiosResponse } from "axios";
 import { defineStore } from "pinia";
 import type {
@@ -79,37 +80,73 @@ export const usePostStore = defineStore("post", {
     },
 
     async interactWithPost(id: number, value: boolean, field: VotingTypes) {
-      await axios.get<boolean>(
-        `http://localhost:3119/interactions/interact/post/${id}?value=${value}&field=${field}`,
-        { withCredentials: true }
-      );
+      try {
+        await axios.get<boolean>(
+          `http://localhost:3119/interactions/interact/post/${id}?value=${value}&field=${field}`,
+          { withCredentials: true }
+        );
 
-      if (field === "vote") {
-        // dispatch({
-        //   type: VOTE_POST,
-        //   payload: { id, value },
-        // });
-      }
+        if (field === "vote") {
+          if (this.currentPost && this.currentPost.interactions) {
+            const voteValue = value;
+            const voteStatus = this.currentPost.interactions.voteStatus;
+            const votePoints = this.currentPost.post.votePoints;
 
-      if (field === "like") {
-        // dispatch({
-        //   type: LIKE_POST,
-        //   payload: id,
-        // });
-      }
+            const { newVoteStatus, newVotePoints } = voteManipulation(
+              voteValue,
+              voteStatus,
+              votePoints
+            );
 
-      if (field === "laugh") {
-        // dispatch({
-        //   type: LAUGHE_POST,
-        //   payload: id,
-        // });
-      }
+            this.currentPost.interactions.voteStatus = newVoteStatus;
+            this.currentPost.post.votePoints = newVotePoints;
+          }
 
-      if (field === "confused") {
-        // dispatch({
-        //   type: CONFUSE_POST,
-        //   payload: id,
-        // });
+          this.paginatedPosts.postAndInteractions.forEach(
+            (postAndInteraction) => {
+              if (
+                postAndInteraction.post.id === id &&
+                postAndInteraction.interactions
+              ) {
+                const voteValue = value;
+                const voteStatus = postAndInteraction.interactions.voteStatus;
+                const votePoints = postAndInteraction.post.votePoints;
+
+                const { newVoteStatus, newVotePoints } = voteManipulation(
+                  voteValue,
+                  voteStatus,
+                  votePoints
+                );
+
+                postAndInteraction.interactions.voteStatus = newVoteStatus;
+                postAndInteraction.post.votePoints = newVotePoints;
+              }
+            }
+          );
+        }
+
+        if (field === "like") {
+          // dispatch({
+          //   type: LIKE_POST,
+          //   payload: id,
+          // });
+        }
+
+        if (field === "laugh") {
+          // dispatch({
+          //   type: LAUGHE_POST,
+          //   payload: id,
+          // });
+        }
+
+        if (field === "confused") {
+          // dispatch({
+          //   type: CONFUSE_POST,
+          //   payload: id,
+          // });
+        }
+      } catch (err) {
+        console.log(err);
       }
     },
 

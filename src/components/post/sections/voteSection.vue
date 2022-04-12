@@ -6,15 +6,23 @@
       @click="vote(true)"
     />
     <div class="text-center">{{ postAndInteractions.post.votePoints }}</div>
-    <button class="bi bi-caret-down btn" @click="vote(false)" />
+    <button
+      class="bi bi-caret-down btn"
+      :class="{
+        'bg-info': postAndInteractions.interactions?.voteStatus === false,
+      }"
+      @click="vote(false)"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import { usePostStore } from "@/stores/post/postStore";
 import type { PostAndInteractions } from "@/stores/post/PostTypes";
 import type { UserPostAndInteractions } from "@/stores/user/UserTypes";
 import { toRefs } from "vue";
 
+const postStore = usePostStore();
 const props = defineProps<{
   postAndInteractions: PostAndInteractions | UserPostAndInteractions;
   isInProfile?: boolean;
@@ -23,7 +31,7 @@ const props = defineProps<{
 const { postAndInteractions, isInProfile } = toRefs(props);
 
 function vote(val: boolean) {
-  console.log("voted: ", val);
+  postStore.interactWithPost(postAndInteractions.value.post.id, val, "vote");
 }
 </script>
 
