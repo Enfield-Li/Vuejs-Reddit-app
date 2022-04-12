@@ -1,6 +1,8 @@
 <template>
   <div class="my-2">
-    <router-link :to="{ name: 'home' }">
+    <router-link
+      :to="{ name: 'post', params: { id: postAndInteractions.post.id } }"
+    >
       <!-- title -->
       <div role="button" class="card-title text-decoration-none h3">
         {{ props.postAndInteractions.post.title }}

@@ -1,10 +1,10 @@
 <template>
   <form @submit.prevent="submitForm">
     <label>Username or email</label>
-    <input v-model="formData.usernameOrEmail" type="text" />
+    <input v-model="usernameOrEmail" type="text" />
 
     <label>Password</label>
-    <input v-model="formData.password" type="text" />
+    <input v-model="password" type="text" />
     <button>submit</button>
   </form>
 </template>
@@ -13,12 +13,15 @@
 import router from "@/router";
 import { useUserStore } from "@/stores/user/uesrStore";
 import { reactive } from "vue-demi";
+import { toRefs } from "vue";
+
 const userStore = useUserStore();
 
 const formData = reactive({
   usernameOrEmail: "",
   password: "",
 });
+const { usernameOrEmail, password } = toRefs(formData);
 
 async function submitForm() {
   const { usernameOrEmail, password } = formData;

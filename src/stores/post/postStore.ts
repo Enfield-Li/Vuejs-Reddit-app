@@ -137,7 +137,7 @@ export const usePostStore = defineStore("post", {
 
     clearPostsCache() {},
 
-    async fetchSinglePost(id: string) {
+    async fetchSinglePost(id: string | string[]) {
       const res = await axios.get<PostAndInteractions>(
         `http://localhost:3119/post/single-post/${id}`,
         {
@@ -154,10 +154,7 @@ export const usePostStore = defineStore("post", {
         res.data.interactions = newInteractions;
       }
 
-      //   dispatch({
-      //     type: CURRENT_POST,
-      //     payload: res.data,
-      //   });
+      this.currentPost = res.data;
     },
 
     async createPost(post: CreatePostType) {

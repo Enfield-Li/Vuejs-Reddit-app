@@ -13,15 +13,14 @@
 <script setup lang="ts">
 import type { PostAndInteractions } from "@/stores/post/PostTypes";
 import type { UserPostAndInteractions } from "@/stores/user/UserTypes";
-import { ref } from "vue";
+import { toRefs } from "vue";
 
 const props = defineProps<{
   postAndInteractions: PostAndInteractions | UserPostAndInteractions;
   isInProfile?: boolean;
 }>();
 
-const { postAndInteractions, isInProfile } = props;
-const voteStatus = ref(postAndInteractions.interactions?.voteStatus);
+const { postAndInteractions, isInProfile } = toRefs(props);
 
 function vote(val: boolean) {
   console.log("voted: ", val);
