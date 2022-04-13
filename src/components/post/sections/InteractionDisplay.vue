@@ -54,6 +54,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePostStore } from "@/stores/post/postStore";
 import type { PostAndInteractions } from "@/stores/post/PostTypes";
 import type { UserPostAndInteractions } from "@/stores/user/UserTypes";
 
@@ -62,11 +63,13 @@ const props = defineProps<{
   isInProfile?: boolean;
 }>();
 
+const postStore = usePostStore();
+
 const { postAndInteractions, isInProfile } = props;
 const { post, interactions } = postAndInteractions;
 
 function interact(field: "like" | "laugh" | "confused") {
-  console.log(field);
+  postStore.interactWithPost(post.id, true, field);
 }
 </script>
 

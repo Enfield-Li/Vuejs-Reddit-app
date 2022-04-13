@@ -1,3 +1,4 @@
+import { interactionManipulation } from "@/utils/interactionManipulation";
 import {
   interactionNullCheckAndPopulateData,
   populateWithMockData,
@@ -137,24 +138,112 @@ export const usePostStore = defineStore("post", {
         }
 
         if (field === "like") {
-          // dispatch({
-          //   type: LIKE_POST,
-          //   payload: id,
-          // });
+          if (this.currentPost && this.currentPost.interactions) {
+            const likeStatus = this.currentPost.interactions.likeStatus;
+            const likePoints = this.currentPost.post.likePoints;
+
+            const { newStatus, newPoints } = interactionManipulation(
+              likeStatus,
+              likePoints
+            );
+
+            this.currentPost.interactions.likeStatus = newStatus;
+            this.currentPost.post.likePoints = newPoints;
+            return;
+          }
+
+          this.paginatedPosts.postAndInteractions.forEach(
+            (postAndInteraction) => {
+              if (
+                postAndInteraction.post.id === id &&
+                postAndInteraction.interactions
+              ) {
+                const likeStatus = postAndInteraction.interactions.likeStatus;
+                const likePoints = postAndInteraction.post.likePoints;
+
+                const { newStatus, newPoints } = interactionManipulation(
+                  likeStatus,
+                  likePoints
+                );
+
+                postAndInteraction.interactions.likeStatus = newStatus;
+                postAndInteraction.post.likePoints = newPoints;
+              }
+            }
+          );
         }
 
         if (field === "laugh") {
-          // dispatch({
-          //   type: LAUGHE_POST,
-          //   payload: id,
-          // });
+          if (this.currentPost && this.currentPost.interactions) {
+            const laughStatus = this.currentPost.interactions.laughStatus;
+            const laughPoints = this.currentPost.post.laughPoints;
+
+            const { newStatus, newPoints } = interactionManipulation(
+              laughStatus,
+              laughPoints
+            );
+
+            this.currentPost.interactions.laughStatus = newStatus;
+            this.currentPost.post.laughPoints = newPoints;
+            return;
+          }
+
+          this.paginatedPosts.postAndInteractions.forEach(
+            (postAndInteraction) => {
+              if (
+                postAndInteraction.post.id === id &&
+                postAndInteraction.interactions
+              ) {
+                const laughStatus = postAndInteraction.interactions.laughStatus;
+                const laughPoints = postAndInteraction.post.laughPoints;
+
+                const { newStatus, newPoints } = interactionManipulation(
+                  laughStatus,
+                  laughPoints
+                );
+
+                postAndInteraction.interactions.laughStatus = newStatus;
+                postAndInteraction.post.laughPoints = newPoints;
+              }
+            }
+          );
         }
 
         if (field === "confused") {
-          // dispatch({
-          //   type: CONFUSE_POST,
-          //   payload: id,
-          // });
+          if (this.currentPost && this.currentPost.interactions) {
+            const confusedStatus = this.currentPost.interactions.confusedStatus;
+            const confusedPoints = this.currentPost.post.confusedPoints;
+
+            const { newStatus, newPoints } = interactionManipulation(
+              confusedStatus,
+              confusedPoints
+            );
+
+            this.currentPost.interactions.confusedStatus = newStatus;
+            this.currentPost.post.confusedPoints = newPoints;
+            return;
+          }
+
+          this.paginatedPosts.postAndInteractions.forEach(
+            (postAndInteraction) => {
+              if (
+                postAndInteraction.post.id === id &&
+                postAndInteraction.interactions
+              ) {
+                const confusedStatus =
+                  postAndInteraction.interactions.confusedStatus;
+                const confusedPoints = postAndInteraction.post.confusedPoints;
+
+                const { newStatus, newPoints } = interactionManipulation(
+                  confusedStatus,
+                  confusedPoints
+                );
+
+                postAndInteraction.interactions.confusedStatus = newStatus;
+                postAndInteraction.post.confusedPoints = newPoints;
+              }
+            }
+          );
         }
       } catch (err) {
         console.log(err);

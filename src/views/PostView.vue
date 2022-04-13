@@ -13,7 +13,9 @@
                 <p class="card-text mb-3 me-2 fs-5">
                   {{ postStore.currentPost.post.content }}
                 </p>
-                <!-- <InteractionDisplay postAndInteractions={currentPost} /> -->
+                <InteractionDisplay
+                  :postAndInteractions="postStore.currentPost"
+                />
 
                 <!-- <CreateComment
                       postId={currentPost.post.id}
@@ -47,6 +49,7 @@ import { useRoute } from "vue-router";
 import PostCreatorInfo from "../components/post/sections/PostCreatorInfo.vue";
 import VoteSection from "../components/post/sections/voteSection.vue";
 import ContentPlaceholder from "../components/placehoders/ContentPlaceholder.vue";
+import InteractionDisplay from "../components/post/sections/InteractionDisplay.vue";
 
 const route = useRoute();
 const postStore = usePostStore();
